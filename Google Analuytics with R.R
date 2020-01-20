@@ -1,22 +1,22 @@
 # Author: Tanay Mukherjee
 # 2019-02-12
 
-## setup
+# setup
 library(googleAnalyticsR)
 
-## authenticate
+# authenticate
 ga_auth()
 
-## get your accounts
+# get your accounts
 account_list <- ga_account_list()
 
-## account_list will have a column called "viewId"
+# account_list will have a column called "viewId"
 account_list$viewId
 
-## View account_list and pick the viewId you want to extract data from
+# View account_list and pick the viewId you want to extract data from
 ga_id <- 123456
 
-## simple query to test connection
+# simple query to test connection
 google_analytics(ga_id, 
                  date_range = c("2017-01-01", "2017-03-01"), 
                  metrics = "sessions", 
@@ -44,7 +44,7 @@ alldata <- google_analytics(ga_id,
                             max = -1) 
 
 
-## anti_sample gets all results (max = -1)
+# anti_sample gets all results (max = -1)
 gadata <- google_analytics(myID,
                            date_range = c(start_date, end_date),
                            metrics = "pageviews",
@@ -52,19 +52,19 @@ gadata <- google_analytics(myID,
                            segments = myseg,
                            anti_sample = TRUE)
 
-## ----
+# ----
 
-## If you are using anti-sampling, it will always fetch all rows.
-## This is because it won't make sense to fetch only the top results as the API
-## splits up the calls over all days.
-## If you want to limit it afterwards, use R by doing something like:
+# If you are using anti-sampling, it will always fetch all rows.
+# This is because it won't make sense to fetch only the top results as the API
+# splits up the calls over all days.
+# If you want to limit it afterwards, use R by doing something like:
 
-## limit to top 25
+# limit to top 25
 top_25 <- head(gadata[order(gadata$pageviews, decreasing = TRUE), ] , 25)
 
 
-## Date Ranges
-## You can send in dates in YYYY-MM-DD format:
+# Date Ranges
+# You can send in dates in YYYY-MM-DD format:
 
 google_analytics(868768, date_range = c("2016-12-31", "2017-02-01"), metrics = "sessions")
 
@@ -75,14 +75,14 @@ google_analytics(868768, date_range = c(ThreedaysAgo, yesterday), metrics = "ses
 
 google_analytics(868768, date_range = c("5daysAgo", "yesterday"), metrics = "sessions")
 
-## Compare data ranges
+# Compare data ranges
 google_analytics(868768, 
                  date_range = c("16daysAgo", "9daysAgo", "8daysAgo", "yesterday"), 
                  metrics = "sessions")
 
 delta_sess <- order_type("sessions","DESCENDING", "DELTA")
 
-## find top 20 landing pages that changed most in sessions comparing this week and last week
+# find top 20 landing pages that changed most in sessions comparing this week and last week
 gadata <- google_analytics(gaid,
                            date_range = c("16daysAgo", "9daysAgo", "8daysAgo", "yesterday"),
                            metrics = c("sessions"),
@@ -90,9 +90,9 @@ gadata <- google_analytics(gaid,
                            order = delta_sess,
                            max = 20)
 
-## Anti sampling
+# Anti sampling
 
-## Sampled data example
+# Sampled data example
 library(googleAnalyticsR)
 ga_auth()
 sampled_data_fetch <- google_analytics(id, 
@@ -102,7 +102,7 @@ sampled_data_fetch <- google_analytics(id,
 
 
 
-## Unsampled data example
+# Unsampled data example
 library(googleAnalyticsR)
 ga_auth()
 unsampled_data_fetch <- google_analytics(id, 
@@ -114,10 +114,10 @@ unsampled_data_fetch <- google_analytics(id,
 
 
 
-## Cases when auto-anti sampling fails
-## Use the following method to continue digging deeper
+# Cases when auto-anti sampling fails
+# Use the following method to continue digging deeper
 
-## example setting your own anti_sample_batch to 5 days per batch
+# example setting your own anti_sample_batch to 5 days per batch
 unsampled_data_fetch <- google_analytics(id, 
                                          date_range = c("2015-01-01","2015-06-21"), 
                                          metrics = c("users","sessions","bounceRate"), 
