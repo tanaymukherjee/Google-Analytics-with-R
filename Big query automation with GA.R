@@ -15,7 +15,6 @@ bqr_auth()
 bqr_list_projects()
 bqr_list_datasets("project-id")
 
-
 # If you want to authenticate with Google Analytics and BigQuery in the same session
 # (or others) then its best to authenticate with googleAuthR::gar_auth()
 # with the appropriate scopes set. The below lets you authenticate with Google Analytics,
