@@ -408,5 +408,3 @@ ci <- ga_model(81416156, ci_model, event_date = as.Date("2019-01-01"))
 ci$plot
 
 # Ref: https://code.markedmondson.me/googleAnalyticsR/articles/models.html
-
-
