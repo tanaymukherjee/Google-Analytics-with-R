@@ -85,7 +85,6 @@ selected_id <- callModule(authDropdown, "auth_menu", ga.table = ga_accounts)
 
 
 # Example:
-
 # ui.R
 library(googleAuthR)
 library(googleAnalyticsR)
